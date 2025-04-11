@@ -1,32 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:weather_repository/weather_repository.dart' hide Weather;
-import 'package:weather_repository/weather_repository.dart' as weather_repository;
+import 'package:weather_repository/weather_repository.dart'
+    as weather_repository;
 
 part 'weather.g.dart';
 
-enum TemperatureUnits { celsius, fahrenheit }
+enum TemperatureUnits { fahrenheit, celsius }
 
-extension TeperatureUnitsX on TemperatureUnits {
-  bool get is Celsius => this == TemperatureUnits.celsius;
-  bool get is Fahrenheit => this == TemperatureUnits.fahrenheit;
+extension TemperatureUnitsX on TemperatureUnits {
+  bool get isFahrenheit => this == TemperatureUnits.fahrenheit;
+  bool get isCelsius => this == TemperatureUnits.celsius;
 }
 
 @JsonSerializable()
 class Temperature extends Equatable {
-  const Temperature( {
-    required this.value
-  });
+  const Temperature({required this.value});
 
-  factory Temperature.fromJson(Map<String, dynamic> json) => _$TemperatureFromJson(json);
+  factory Temperature.fromJson(Map<String, dynamic> json) =>
+      _$TemperatureFromJson(json);
 
   final double value;
 
-  Map<String, double> toJson() => _$TemperatureToJson(this);
+  Map<String, dynamic> toJson() => _$TemperatureToJson(this);
 
   @override
-  List<Object?> get props => [value];
-
+  List<Object> get props => [value];
 }
 
 @JsonSerializable()
@@ -38,9 +37,10 @@ class Weather extends Equatable {
     required this.temperature,
   });
 
-  factory Weather.fromJson(Map<String, dynamic> json) => _$WeatherFromJson(json);
+  factory Weather.fromJson(Map<String, dynamic> json) =>
+      _$WeatherFromJson(json);
 
-  factory Weather.fromWeatherRepository(weather_repository.Weather weather) {
+  factory Weather.fromRepository(weather_repository.Weather weather) {
     return Weather(
       condition: weather.condition,
       lastUpdated: DateTime.now(),
@@ -54,7 +54,7 @@ class Weather extends Equatable {
     lastUpdated: DateTime(0),
     temperature: const Temperature(value: 0),
     location: '--',
-    );
+  );
 
   final WeatherCondition condition;
   final DateTime lastUpdated;
@@ -62,12 +62,7 @@ class Weather extends Equatable {
   final Temperature temperature;
 
   @override
-  List<Object?> get props => [
-        condition,
-        lastUpdated,
-        location,
-        temperature,
-      ];
+  List<Object> get props => [condition, lastUpdated, location, temperature];
 
   Map<String, dynamic> toJson() => _$WeatherToJson(this);
 
@@ -85,4 +80,3 @@ class Weather extends Equatable {
     );
   }
 }
-
