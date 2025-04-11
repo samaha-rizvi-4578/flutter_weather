@@ -21,3 +21,8 @@ https://api.open-meteo.com/v1/forecast?latitude=$latitude&longitude=$longitude&c
 // bloc layer we will be consuming the weather domain model from weather repository and exposing eature level moel which will be surfaced to use via ui
 
 // This is the third different type of weather model we’re implementing. In the API client, our weather model contained all the info returned by the API. In the repository layer, our weather model contained only the abstracted model based on our business case. In this layer, our weather model will contain relevant information needed specifically for the current feature set.
+
+
+// We will use HydratedCubit to enable our app to remember its application state, even after it’s been closed and reopened.
+
+// HydratedCubit is an extension of Cubit which handles persisting and restoring state across sessions.
