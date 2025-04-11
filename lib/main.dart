@@ -17,3 +17,4 @@ https://api.open-meteo.com/v1/forecast?latitude=$latitude&longitude=$longitude&c
 //  we will crate a new pkg weatherrepository
 
 // We’re using a path to specify the location of the open_meteo_api which allows us to treat it just like an external package from pub.dev.
+
