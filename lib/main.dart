@@ -12,3 +12,8 @@ https://api.open-meteo.com/v1/forecast?latitude=$latitude&longitude=$longitude&c
 */
 
 // creating open meteo api client as a apckage  flutter create --template=package open_meteo_api
+
+//  now for repositry layer our goal is to abstarct our data layer andn facilitate communication with bloc layer . the rest of our codebase depends on only fucntions exposed by repository layer instead of specifc dat aproviderwithout disrupting any of application level code
+//  we will crate a new pkg weatherrepository
+
+// We’re using a path to specify the location of the open_meteo_api which allows us to treat it just like an external package from pub.dev.
