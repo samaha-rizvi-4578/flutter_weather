@@ -26,3 +26,21 @@ https://api.open-meteo.com/v1/forecast?latitude=$latitude&longitude=$longitude&c
 // We will use HydratedCubit to enable our app to remember its application state, even after it’s been closed and reopened.
 
 // HydratedCubit is an extension of Cubit which handles persisting and restoring state across sessions.
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_weather/app.dart';
+import 'package:flutter_weather/weather_bloc_observer.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = const WeatherBlocObserver();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+  );
+  runApp(const WeatherApp());
+}
