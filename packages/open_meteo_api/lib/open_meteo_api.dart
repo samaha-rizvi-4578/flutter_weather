@@ -1,6 +1,7 @@
 library open_meteo_api;
 
 export 'src/models/models.dart';
+export 'src/open_meteo_api_client.dart';
 // export modesl .dart
 // to be able to deserialize and serialize our models in order to work with api data we will add fromjsonand tojson method in our models
 
